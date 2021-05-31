@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections;
+using System.Globalization;
 
 namespace Chess4
 {
@@ -130,17 +131,17 @@ namespace Chess4
             }
         }
 
-        public ICommand NewGameCommand => _newGameCommand ??= new RelayCommand(parameter =>
+        public ICommand NewGameCommand => _newGameCommand = new RelayCommand(parameter =>
         {
             SetupBoard();
         });
 
-        public ICommand ClearCommand => _clearCommand ??= new RelayCommand(parameter =>
+        public ICommand ClearCommand => _clearCommand = new RelayCommand(parameter =>
         {
             Board = new Board();
         });
 
-        public ICommand CellCommand => _cellCommand ??= new RelayCommand(parameter =>
+        public ICommand CellCommand => _cellCommand = new RelayCommand(parameter =>
         {
             Cell cell = (Cell)parameter;
             Cell activeCell = Board.FirstOrDefault(x => x.Active);
